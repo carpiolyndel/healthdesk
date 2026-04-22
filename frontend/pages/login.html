@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthDesk | Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body class="login-page">
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-logo">
+            <img src="../assets/images/logo/logo.png" alt="HealthDesk Logo">
+            <h1>Health<span>Desk</span></h1>
+            <p>Clinic Patient Record & Appointment System</p>
+        </div>
+
+        <div id="errorMsg" class="error-message"></div>
+
+        <form id="loginForm">
+            <div class="input-field">
+                <label>Username</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+            </div>
+
+            <div class="input-field">
+                <label>Password</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+            </div>
+
+            <div class="login-options">
+                <label class="checkbox">
+                    <input type="checkbox"> Remember me
+                </label>
+                <a href="#" class="forgot-link">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn-login">Sign In</button>
+        </form>
+
+        <div id="mfaSection" class="mfa-section">
+            <form id="mfaForm">
+                <div class="input-field">
+                    <label>Verification Code</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-key"></i>
+                        <input type="text" id="otp" placeholder="Enter 6-digit OTP" maxlength="6" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-login">Verify OTP</button>
+            </form>
+        </div>
+
+        <div class="back-link">
+            <a href="../index.html">← Back to Home</a>
+        </div>
+
+        <div class="security-badge">
+            <i class="fas fa-shield-alt"></i> Multi-factor authentication enabled
+        </div>
+    </div>
+</div>
+
+<script src="../js/main.js"></script>
+<script src="../js/auth.js"></script>
+<script>
+    const loginForm = document.getElementById('loginForm');
+    const mfaSection = document.getElementById('mfaSection');
+    const errorMsg = document.getElementById('errorMsg');
+
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const user = validateLogin(username, password);
+
+        if (user) {
+            currentUser = user;
+            sentOTP = generateOTP();
+            console.log(`OTP for ${username}: ${sentOTP}`);
+            showToast(`OTP sent to registered device`, 'info');
+            mfaSection.classList.add('active');
+            errorMsg.style.display = 'none';
+            document.getElementById('otp').focus();
+        } else {
+            errorMsg.textContent = 'Invalid username or password';
+            errorMsg.style.display = 'block';
+            setTimeout(() => {
+                errorMsg.style.display = 'none';
+            }, 3000);
+        }
+    });
+
+    document.getElementById('mfaForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const otp = document.getElementById('otp').value;
+
+        if (verifyOTP(otp, sentOTP)) {
+            saveUserSession(currentUser);
+            showToast(`Welcome back, ${currentUser.name}!`, 'success');
+            setTimeout(() => {
+                window.location.href = `${currentUser.role}.html`;
+            }, 500);
+        } else {
+            errorMsg.textContent = 'Invalid verification code. Please try again.';
+            errorMsg.style.display = 'block';
+            setTimeout(() => {
+                errorMsg.style.display = 'none';
+            }, 3000);
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 280px;
+    background: var(--text-dark);
+    color: white;
+    position: fixed;
+    height: 100vh;
+}
+
+.sidebar-header {
+    padding: 25px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-header img {
+    width: 60px;
+    margin-bottom: 15px;
+}
+
+.nav-link-item {
+    padding: 12px 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #bdc3c7;
+    transition: var(--transition);
+}
+
+.nav-link-item:hover, .nav-link-item.active {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.main-content {
+    flex: 1;
+    margin-left: 280px;
+    background: var(--bg-gray);
+}
+
+.top-bar {
+    background: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.role-badge-doctor {
+    background: #007bff;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    color: white;
+}
+
+.logout-btn {
+    background: var(--error);
+    color: white;
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    border: none;
+}
+
+.content-area {
+    padding: 30px;
+}
+
+.patients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.patient-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+
+.patient-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+.patient-name {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.medical-history {
+    background: var(--bg-gray);
+    padding: 10px;
+    border-radius: var(--radius);
+    margin: 10px 0;
+}
+
+.btn-update {
+    background: var(--primary);
+    color: white;
+    padding: 8px 15px;
+    border-radius: var(--radius);
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+    }
+}
