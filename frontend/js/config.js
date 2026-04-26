@@ -30,10 +30,3 @@ const STORAGE_KEYS = {
     TOKEN: 'token',
     THEME: 'theme'
 };
-
-const DEFAULT_USERS = [
-    { id: 1, username: 'admin', password: 'admin123', role: ROLES.ADMIN, name: 'Admin User', email: 'admin@healthdesk.com' },
-    { id: 2, username: 'doctor', password: 'doctor123', role: ROLES.DOCTOR, name: 'Dr. James Cruz', email: 'doctor@healthdesk.com' },
-    { id: 3, username: 'nurse', password: 'nurse123', role: ROLES.NURSE, name: 'Anna Reyes', email: 'nurse@healthdesk.com' },
-    { id: 4, username: 'staff', password: 'staff123', role: ROLES.STAFF, name: 'Maria Santos', email: 'staff@healthdesk.com' }
-];

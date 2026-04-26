@@ -28,24 +28,6 @@ function getToastIcon(type) {
     }
 }
 
-function formatDate(date) {
-    return new Date(date).toLocaleDateString('en-PH', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
-}
-
-function formatDateTime(date) {
-    return new Date(date).toLocaleString('en-PH', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    });
-}
-
 function formatTime(time) {
     return new Date(`2000-01-01T${time}`).toLocaleTimeString('en-US', {
         hour: 'numeric',
@@ -54,18 +36,9 @@ function formatTime(time) {
     });
 }
 
-function generateId(prefix = '') {
-    return `${prefix}${Date.now()}${Math.floor(Math.random() * 1000)}`;
-}
-
 function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
-}
-
-function validatePhone(phone) {
-    const re = /^[0-9+\-\s()]{10,15}$/;
-    return re.test(phone);
 }
 
 function validateAppointmentDate(date) {
@@ -113,4 +86,11 @@ function downloadCSV(data, filename) {
     a.click();
     URL.revokeObjectURL(url);
     showToast('Report exported successfully', 'success');
+}
+
+function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
 }

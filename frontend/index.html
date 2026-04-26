@@ -79,6 +79,7 @@
             color: var(--gray-700);
             font-weight: 500;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
         .nav-link:hover, .nav-link.active {
             color: var(--primary);
@@ -367,90 +368,93 @@
             background: var(--primary-dark);
         }
         .footer {
-    background: var(--dark);
-    color: var(--gray-500);
-    padding: 60px 0 30px;
-}
+            background: var(--dark);
+            color: var(--gray-500);
+            padding: 60px 0 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-logo {
+            width: 50px;
+            margin-bottom: 15px;
+        }
+        .footer-brand p {
+            color: #bdc3c7;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .footer-note {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        .footer-links h4,
+        .footer-info h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .footer-links ul {
+            list-style: none;
+        }
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        .footer-links ul li a,
+        .footer-info p {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        .footer-links ul li a:hover {
+            color: var(--primary);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-bottom p {
+            color: #bdc3c7;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+        .footer-date {
+            font-size: 12px;
+            opacity: 0.7;
+        }
 
-.footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: 40px;
-    margin-bottom: 40px;
-}
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
 
-.footer-logo {
-    width: 50px;
-    margin-bottom: 15px;
-}
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+        }
 
-.footer-brand p {
-    color: #bdc3c7;
-    margin-top: 10px;
-    font-size: 14px;
-}
-
-.footer-note {
-    font-size: 12px;
-    opacity: 0.7;
-}
-
-.footer-links h4,
-.footer-info h4 {
-    color: white;
-    margin-bottom: 20px;
-    font-size: 16px;
-}
-
-.footer-links ul {
-    list-style: none;
-}
-
-.footer-links ul li {
-    margin-bottom: 10px;
-}
-
-.footer-links ul li a,
-.footer-info p {
-    color: #bdc3c7;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-size: 14px;
-}
-
-.footer-links ul li a:hover {
-    color: var(--primary);
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-.footer-bottom p {
-    color: #bdc3c7;
-    font-size: 13px;
-    margin-bottom: 8px;
-}
-
-.footer-date {
-    font-size: 12px;
-    opacity: 0.7;
-}
-
-@media (max-width: 992px) {
-    .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 576px) {
-    .footer-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-}
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
         @media (max-width: 768px) {
             .container { padding: 0 20px; }
             .hero .container { grid-template-columns: 1fr; text-align: center; }
@@ -474,6 +478,10 @@
             .contact-grid { grid-template-columns: 1fr; }
             .features-grid { grid-template-columns: 1fr; }
             .roles-grid { grid-template-columns: 1fr; }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -485,11 +493,11 @@
             <span class="logo-text">Health<span>Desk</span></span>
         </div>
         <ul class="nav-menu" id="navMenu">
-            <li><a href="#home" class="nav-link active">Home</a></li>
-            <li><a href="#features" class="nav-link">Features</a></li>
-            <li><a href="#roles" class="nav-link">Roles</a></li>
-            <li><a href="#team" class="nav-link">Team</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
+            <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+            <li><a href="#features" class="nav-link" data-section="features">Features</a></li>
+            <li><a href="#roles" class="nav-link" data-section="roles">Roles</a></li>
+            <li><a href="#team" class="nav-link" data-section="team">Team</a></li>
+            <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
         </ul>
         <div class="hamburger" id="hamburger">
             <span></span><span></span><span></span>
@@ -498,7 +506,7 @@
 </header>
 
 <main>
-    <section class="hero" id="home">
+    <section id="home" class="hero">
         <div class="container">
             <div>
                 <h1>Modern Clinic <span class="highlight">Management System</span></h1>
@@ -526,7 +534,7 @@
         </div>
     </section>
 
-    <section class="features" id="features">
+    <section id="features" class="features">
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">System Features</span>
@@ -568,7 +576,7 @@
         </div>
     </section>
 
-    <section class="roles" id="roles">
+    <section id="roles" class="roles">
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Access Control</span>
@@ -606,7 +614,7 @@
         </div>
     </section>
 
-    <section class="about" id="team">
+    <section id="team" class="about">
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Development Team</span>
@@ -620,48 +628,48 @@
                             <i class="fas fa-user-graduate"></i>
                         </div>
                         <h3 class="team-name">Carpio, Lyndel J.</h3>
-                        <p class="team-role">Lead Developer</p>
-                        <p class="team-bio">Backend Developer specializing in Java Spring Boot and database architecture.</p>
-                    </div>
-                    <div class="team-card">
-                        <div class="team-avatar">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <h3 class="team-name">Balanquit, Junel M.</h3>
-                        <p class="team-role">Frontend Developer</p>
-                        <p class="team-bio">UI/UX expert focused on creating intuitive and responsive interfaces.</p>
-                    </div>
-                    <div class="team-card">
-                        <div class="team-avatar">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <h3 class="team-name">Balansag, Geraldine R.</h3>
-                        <p class="team-role">Database Designer</p>
-                        <p class="team-bio">Database architect ensuring data integrity and security.</p>
-                    </div>
-                    <div class="team-card">
-                        <div class="team-avatar">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <h3 class="team-name">Colele, Shella Mae E.</h3>
-                        <p class="team-role">QA Tester</p>
-                        <p class="team-bio">Quality assurance specialist ensuring bug-free deployment.</p>
-                    </div>
-                    <div class="team-card">
-                        <div class="team-avatar">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <h3 class="team-name">Senobio, Denzel</h3>
-                        <p class="team-role">Security Analyst</p>
-                        <p class="team-bio">Security expert implementing MFA and encryption protocols.</p>
+                        <p class="team-role">Frontend Developer & Team Leader</p>
+                        <p class="team-bio">Leading the development team and creating intuitive, responsive user interfaces.</p>
                     </div>
                     <div class="team-card">
                         <div class="team-avatar">
                             <i class="fas fa-user-graduate"></i>
                         </div>
                         <h3 class="team-name">Dizon, Judy Marie A.</h3>
-                        <p class="team-role">Project Manager</p>
-                        <p class="team-bio">Coordinating development and ensuring project milestones are met.</p>
+                        <p class="team-role">Backend Developer</p>
+                        <p class="team-bio">Building robust server-side logic, APIs, and database integration.</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h3 class="team-name">Senobio, Denzel</h3>
+                        <p class="team-role">Database Administrator</p>
+                        <p class="team-bio">Managing database architecture, security, and data integrity.</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h3 class="team-name">Balanquit, Junel M.</h3>
+                        <p class="team-role"></p>
+                        <p class="team-bio"></p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h3 class="team-name">Balansag, Geraldine R.</h3>
+                        <p class="team-role"></p>
+                        <p class="team-bio"></p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h3 class="team-name">Colele, Shella Mae E.</h3>
+                        <p class="team-role"></p>
+                        <p class="team-bio"></p>
                     </div>
                 </div>
             </div>
@@ -672,7 +680,7 @@
         </div>
     </section>
 
-    <section class="contact" id="contact">
+    <section id="contact" class="contact">
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Get In Touch</span>
@@ -725,7 +733,7 @@
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#features">Features</a></li>
-                    <li><a href="#about">About</a></li>
+                    <li><a href="#team">Team</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -753,6 +761,65 @@
 </footer>
 
 <script>
+    // Get all navigation links and sections
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
+    
+    // Function to update active menu based on scroll position
+    function updateActiveMenu() {
+        let current = '';
+        const scrollPosition = window.scrollY + 100;
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const sectionId = link.getAttribute('data-section');
+            if (sectionId === current) {
+                link.classList.add('active');
+            }
+        });
+    }
+    
+    // Function to handle click on navigation links
+    function handleNavClick(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        if (targetSection) {
+            // Remove active class from all links
+            navLinks.forEach(link => link.classList.remove('active'));
+            // Add active class to clicked link
+            this.classList.add('active');
+            
+            // Scroll to section
+            targetSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+    
+    // Add click event listeners to navigation links
+    navLinks.forEach(link => {
+        link.addEventListener('click', handleNavClick);
+    });
+    
+    // Add scroll event listener to update active menu
+    window.addEventListener('scroll', updateActiveMenu);
+    
+    // Call once to set initial active state
+    updateActiveMenu();
+    
+    // Mobile menu toggle
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
     if (hamburger) {
@@ -761,21 +828,16 @@
             navMenu.classList.toggle('active');
         });
     }
+    
+    // Close mobile menu when clicking a link
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
             hamburger?.classList.remove('active');
             navMenu?.classList.remove('active');
         });
     });
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    });
+    
+    // Header scroll effect
     const header = document.getElementById('header');
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
@@ -784,14 +846,114 @@
             header.classList.remove('scrolled');
         }
     });
+    
+    // Custom centered notification function
+    function showNotification(message, type) {
+        const existingNotification = document.querySelector('.custom-notification-overlay');
+        if (existingNotification) existingNotification.remove();
+        
+        const overlay = document.createElement('div');
+        overlay.className = 'custom-notification-overlay';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        `;
+        
+        const notification = document.createElement('div');
+        notification.className = 'custom-notification';
+        notification.style.cssText = `
+            background: white;
+            border-radius: 16px;
+            padding: 24px 32px;
+            min-width: 320px;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+            animation: fadeIn 0.3s ease;
+        `;
+        
+        const iconColor = type === 'success' ? '#10b981' : '#ef4444';
+        const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+        
+        notification.innerHTML = `
+            <i class="fas ${icon}" style="font-size: 48px; color: ${iconColor}; margin-bottom: 16px;"></i>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px; color: var(--dark);">${type === 'success' ? 'Success!' : 'Error!'}</h3>
+            <p style="color: var(--gray-500); line-height: 1.5;">${message}</p>
+            <button onclick="this.closest('.custom-notification-overlay').remove()" style="
+                margin-top: 20px;
+                padding: 8px 24px;
+                background: var(--primary);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-weight: 500;
+                transition: all 0.3s;
+            " onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">OK</button>
+        `;
+        
+        overlay.appendChild(notification);
+        document.body.appendChild(overlay);
+        
+        // Auto close after 3 seconds
+        setTimeout(() => {
+            if (overlay && overlay.parentNode) {
+                overlay.style.animation = 'fadeOut 0.3s ease';
+                setTimeout(() => overlay.remove(), 300);
+            }
+        }, 3000);
+    }
+    
+    // Contact form submission - saves to localStorage for admin to see
     const inquiryForm = document.getElementById('inquiryForm');
     if (inquiryForm) {
         inquiryForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your message! Our clinic will respond within 1-2 business days.');
+            
+            const name = document.getElementById('inqName').value.trim();
+            const email = document.getElementById('inqEmail').value.trim();
+            const phone = document.getElementById('inqPhone').value.trim();
+            const subject = document.getElementById('inqSubject').value;
+            const message = document.getElementById('inqMessage').value.trim();
+            
+            if (!name || !email || !message) {
+                showNotification('Please fill in Name, Email, and Message fields.', 'error');
+                return;
+            }
+            
+            const inquiry = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                phone: phone || '',
+                subject: subject || 'General Inquiry',
+                message: message,
+                status: 'pending',
+                date: new Date().toLocaleString()
+            };
+            
+            let inquiries = JSON.parse(localStorage.getItem('guestInquiries') || '[]');
+            inquiries.unshift(inquiry);
+            localStorage.setItem('guestInquiries', JSON.stringify(inquiries));
+            
+            showNotification('Message sent successfully! Our clinic will respond within 1-2 business days.', 'success');
             this.reset();
+            
+            console.log('Inquiry saved:', inquiry);
+            console.log('Total inquiries:', inquiries.length);
         });
     }
+    
+    // Animate stats numbers
     const statsNumbers = document.querySelectorAll('.stat .num');
     const animateNumbers = () => {
         statsNumbers.forEach(stat => {
@@ -813,6 +975,7 @@
             }
         });
     };
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -821,6 +984,7 @@
             }
         });
     }, { threshold: 0.5 });
+    
     const statsSection = document.querySelector('.stats');
     if (statsSection) observer.observe(statsSection);
 </script>
