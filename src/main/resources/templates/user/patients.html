@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Patients - HealthDesk</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/user/patients.css}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+<header class="bg-blue-600 text-white p-6 text-center">
+    <h1 class="text-2xl font-bold">Patients</h1>
+</header>
+<main class="p-6">
+    <a href="/patients/add" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Add Patient</a>
+    <div class="overflow-x-auto mt-4">
+        <table class="min-w-full bg-white rounded shadow">
+            <thead class="bg-gray-200">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Contact</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="patient : ${patients}" class="border-b">
+                <td th:text="${patient.id}"></td>
+                <td th:text="${patient.name}"></td>
+                <td th:text="${patient.age}"></td>
+                <td th:text="${patient.gender}"></td>
+                <td th:text="${patient.contact}"></td>
+                <td>
+                    <a th:href="@{/patients/edit/{id}(id=${patient.id})}">Edit</a>
+                    <a th:href="@{/patients/archive/{id}(id=${patient.id})}">Archive</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<footer class="bg-gray-200 text-gray-700 p-4 text-center">
+    &copy; 2026 HealthDesk
+</footer>
+</body>
+</html>

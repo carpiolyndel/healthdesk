@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - HealthDesk</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/user/dashboard.css}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+<header class="bg-blue-600 text-white p-6 text-center">
+    <h1 class="text-2xl font-bold">Dashboard</h1>
+</header>
+<main class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="bg-white p-4 rounded shadow text-center">
+        <h2>Total Patients</h2>
+        <p th:text="${patients.size()}">0</p>
+    </div>
+    <div class="bg-white p-4 rounded shadow text-center">
+        <h2>Upcoming Appointments</h2>
+        <p th:text="${appointments.size()}">0</p>
+    </div>
+    <div class="bg-white p-4 rounded shadow text-center">
+        <h2>Archived Patients</h2>
+        <p th:text="${archivedPatients.size()}">0</p>
+    </div>
+    <div class="bg-white p-4 rounded shadow text-center">
+        <h2>Pending OTP Logins</h2>
+        <p th:text="${otpPending}">0</p>
+    </div>
+</main>
+<footer class="bg-gray-200 text-gray-700 p-4 text-center">
+    &copy; 2026 HealthDesk
+</footer>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>OTP Verification - HealthDesk</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/user/otp.css}">
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+<form th:action="@{/verify-otp}" method="post" class="bg-white p-6 rounded shadow max-w-sm w-full">
+    <h1 class="text-xl font-bold mb-4">Enter OTP</h1>
+    <div class="mb-4">
+        <label>OTP</label>
+        <input type="text" name="otp" class="w-full border p-2 rounded" required>
+    </div>
+    <div class="text-red-600 mb-2" th:text="${error}"></div>
+    <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-full">Verify</button>
+</form>
+</body>
+</html>

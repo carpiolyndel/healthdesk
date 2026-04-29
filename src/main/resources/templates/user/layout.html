@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">HealthDesk</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/user/dashboard.css}">
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+<header class="bg-blue-600 text-white p-6 flex justify-between items-center">
+    <h1 class="text-3xl font-bold">HealthDesk</h1>
+    <nav>
+        <a href="/dashboard" class="px-4 py-2 hover:bg-blue-500 rounded">Dashboard</a>
+        <a href="/patients" class="px-4 py-2 hover:bg-blue-500 rounded">Patients</a>
+        <a href="/appointments" class="px-4 py-2 hover:bg-blue-500 rounded">Appointments</a>
+        <a href="/report" class="px-4 py-2 hover:bg-blue-500 rounded">Reports</a>
+        <a href="/logout" class="px-4 py-2 bg-red-600 rounded hover:bg-red-500">Logout</a>
+    </nav>
+</header>
+
+<main class="flex-grow p-6">
+    <div th:replace="${content}"></div>
+</main>
+
+<footer class="bg-gray-200 text-gray-700 p-4 text-center">
+    &copy; 2026 HealthDesk
+</footer>
+</body>
+</html>

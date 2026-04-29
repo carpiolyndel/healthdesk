@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthDesk - Login</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/user/login.css">
+</head>
+<body>
+
+<div class="login-wrapper">
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+
+    <div class="login-card">
+        <div class="logo-section">
+            <div class="logo-icon">
+                <img src="/images/logo.png" alt="HealthDesk Logo" class="xs-logo">
+            </div>
+            <h1>Health<span>Desk</span></h1>
+            <p>Clinic Patient Record & Appointment System</p>
+        </div>
+
+        <div class="role-message" id="roleMessage">
+            <i class="fas fa-shield-alt"></i>
+            <span id="roleText">Secure access to your dashboard</span>
+        </div>
+
+        <!-- Login Form -->
+        <div id="loginView" class="form-container">
+            <form id="loginForm">
+                <div class="input-field">
+                    <div class="input-icon"><i class="fas fa-user"></i></div>
+                    <input type="text" id="username" placeholder="Username" required autofocus>
+                </div>
+                <div class="input-field">
+                    <div class="input-icon"><i class="fas fa-lock"></i></div>
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="login-btn">
+                    <span>Sign In</span><i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- MFA OTP Form -->
+        <div id="mfaView" class="form-container" style="display: none;">
+            <div class="mfa-header">
+                <i class="fas fa-key"></i>
+                <h3>Two-Factor Authentication</h3>
+                <p>Enter the verification code sent to your email</p>
+            </div>
+            <form id="mfaForm">
+                <div class="input-field">
+                    <div class="input-icon"><i class="fas fa-key"></i></div>
+                    <input type="text" id="otpCode" placeholder="Enter OTP" maxlength="6" required>
+                </div>
+                <div id="otpTimer" class="timer-display"></div>
+                <button type="submit" class="login-btn verify-btn">
+                    <i class="fas fa-check-circle"></i> Verify & Continue
+                </button>
+                <button type="button" id="resendOtpBtn" class="resend-link" style="display:none;">
+                    <i class="fas fa-redo-alt"></i> Resend OTP
+                </button>
+            </form>
+            <a href="#" class="back-link" onclick="backToLogin()">← Back to Sign In</a>
+        </div>
+    </div>
+
+    <div id="toast" class="toast-message"></div>
+</div>
+
+<script src="/js/login.js"></script>
+</body>
+</html>
