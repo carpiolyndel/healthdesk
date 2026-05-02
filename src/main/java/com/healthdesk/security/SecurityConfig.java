@@ -30,14 +30,25 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+                        // PUBLIC - Guest view (HTML, CSS, JS files)
+                        .requestMatchers(new AntPathRequestMatcher("/guest/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/css/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/js/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/assets/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/test.html")).permitAll()
+                        
+                        // API Public endpoints
                         .requestMatchers(new AntPathRequestMatcher("/public/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/auth/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/hello")).permitAll()
+                        
+                        // API Private endpoints (require authentication)
                         .requestMatchers(new AntPathRequestMatcher("/patients/**")).authenticated()
                         .requestMatchers(new AntPathRequestMatcher("/appointments/**")).authenticated()
                         .requestMatchers(new AntPathRequestMatcher("/users/**")).hasRole("ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/reports/**")).hasAnyRole("ADMIN", "DOCTOR")
+                        
                         .anyRequest().authenticated()
                 )
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))
